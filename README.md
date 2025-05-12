@@ -57,3 +57,42 @@
     }
 }
 ```
+
+## Análise Léxica e Sintática
+
+Via **Linux** ou **WSL** no Windows, as ferramentas **Flex** (para análise léxica) e **Bison** (para análise sintática) podem ser utilizadas para validar os scripts escritos na linguagem.
+
+- Os arquivos de código (`scanner.l`, `parser.y`, `main.c`) estão localizados em `analysis/`
+- O `Makefile` está na raiz do projeto (`FILESCRIPT/`)
+- O executável gerado será `analysis/analyzer`
+
+### ➔ Pré requisitos
+
+Para garantir suporte adequado às ferramentas utilizadas, instale suas dependências executando os comandos abaixo:
+
+```bash
+sudo apt update
+sudo apt install flex bison gcc build-essential
+```
+
+### ➔ Compilação e execução
+
+Para compilar e executar a verificação léxica e sintática, basta ter um arquivo como `entrada.txt` em FileScript na raiz do projeto e executar:
+
+```bash
+make run-entrada.txt
+```
+
+Este comando:
+
+1. Compila automaticamente os arquivos com Flex e Bison
+2. Gera o executável `analysis/analyzer`
+3. Executa `./analysis/analyzer < entrada.txt`
+
+### ➔ Limpeza dos arquivos gerados
+
+Para remover todos os arquivos intermediários gerados (scanner, parser e binário), voltando `analysis/` ao estado original, execute:
+
+```bash
+make clean
+```

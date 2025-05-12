@@ -1,0 +1,10 @@
+{  
+    var origem = "C:/Downloads"  
+    var destino = "C:/Backup"  
+
+    if origem > 0 {  
+        MoveFile(origem, destino)  
+    else  
+        CopyFile(origem, destino)  
+    }  
+}
