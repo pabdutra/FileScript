@@ -1,0 +1,12 @@
+{
+    var origem = "C:/Downloads"
+    var destino = "C:/Backup"
+    
+    if origem == destino {
+        MoveFile(origem destino)  // Falta a vírgula entre os argumentos
+    }
+    
+    ListFiles()  // Falta o argumento obrigatório
+    
+    var tamanho = CheckSpace(destino  // Falta o parêntese de fechamento
+}

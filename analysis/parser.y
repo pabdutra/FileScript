@@ -4,8 +4,10 @@
 #include <string.h>
 
 extern FILE *yyin;
+extern int yylineno;
+extern char *yytext;
 int yylex(void);
-int yyerror(const char *s);
+int yyerror(const char *msg);
 %}
 
 %union {
@@ -51,7 +53,7 @@ statement:
     ;
 
 var_declaration:
-    VAR IDENTIFIER ASSIGN expression
+    VAR IDENTIFIER ASSIGN expression { $$ = $2; }
     ;
 
 assignment:
@@ -86,24 +88,24 @@ condition:
     ;
 
 expression:
-      STRING
-    | NUMBER
-    | IDENTIFIER
-    | file_expression
-    | expression PLUS expression
-    | expression MINUS expression
+      STRING                      { $$ = 0; }
+    | NUMBER                      { $$ = $1; }
+    | IDENTIFIER                  { $$ = 0; }
+    | file_expression             { $$ = $1; }
+    | expression PLUS expression  { $$ = $1 + $3; }
+    | expression MINUS expression { $$ = $1 - $3; }
     ;
 
 
 file_expression:
-      COUNTFILES   LPAREN expression RPAREN
-    | CHECKSPACE   LPAREN expression RPAREN
+      COUNTFILES   LPAREN expression RPAREN   { $$ = 0; }
+    | CHECKSPACE   LPAREN expression RPAREN   { $$ = 0; }
     ;
 
 
 %%
 
 int yyerror(const char *msg) {
-    fprintf(stderr, "Erro de sintaxe: %s\n", msg);
+    fprintf(stderr, "Erro de sintaxe na linha %d próximo a '%s': %s\n", yylineno, yytext, msg);
     return 0;
 }

@@ -3,11 +3,11 @@
 #include <stdlib.h>
 #include <string.h>
 #include <stdio.h>
-extern int yylineno;
 %}
 
 %option noyywrap
 %option noinput nounput
+%option yylineno
 
 DIGIT           [0-9]
 LETTER          [a-zA-Z]
@@ -47,6 +47,9 @@ STRING_LITERAL  \"([^\"\\]|\\.)*\"
 ")"                 { return RPAREN; }
 ","                 { return COMMA; }
 
+\n          { }
+[ \t\r]+    { }
+
 {NUMBER}            { yylval.num = atoi(yytext); return NUMBER; }
 
 {STRING_LITERAL}    {
@@ -56,8 +59,6 @@ STRING_LITERAL  \"([^\"\\]|\\.)*\"
                    }
 
 {IDENTIFIER}        { yylval.id = strdup(yytext); return IDENTIFIER; }
-
-[ \t\r\n]+          { }
 
 .                   {
                       fprintf(stderr, "Erro léxico na linha %d: caractere inválido '%s'\n", yylineno, yytext);

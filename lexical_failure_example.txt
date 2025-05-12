@@ -1,0 +1,10 @@
+{
+    var arquivo1 = "C:/Documentos"
+    var arquivo2 = "C:/Backup"
+    
+    # Este é um comentário que não está definido no scanner
+    
+    if arquivo1 == arquivo2 {
+        DeleteFile(arquivo1)
+    }
+}
