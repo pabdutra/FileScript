@@ -1,0 +1,5 @@
+{
+    var pasta = "/home/pedro/Downloads"
+    # Comentário inválido
+    var arquivo = "teste.txt"
+}

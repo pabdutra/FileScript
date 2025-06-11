@@ -1,0 +1,21 @@
+{
+    var base = "/home/pedro/Downloads"
+
+    var total_arquivos = CountFiles(base)
+
+    ListFiles(base)
+
+    var espaco_ocupado = CheckSpace(base)
+
+    if total_arquivos > 0 {
+        Wait(300)
+    } else {
+        Wait(5000)
+    }
+
+    var contador = 3
+    for contador > 0 {
+        Wait(1000)
+        contador = contador - 1
+    }
+}

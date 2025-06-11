@@ -1,0 +1,5 @@
+{
+    var pasta = "/home/pedro/Downloads"
+    var total = CountFiles(pasta
+    ListFiles(pasta)
+}

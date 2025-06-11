@@ -1,0 +1,21 @@
+{
+    var base = "/home/pedro/Downloads"
+    var pasta_temp = base + "/temp_filescript"
+
+    var arquivo_origem = base + "/arquivo_teste.txt"
+    var arquivo_destino = pasta_temp + "/arquivo_teste.txt"
+    var arquivo_renomeado = pasta_temp + "/arquivo_final.txt"
+
+    ListFiles(base)
+    CountFiles(pasta_temp)
+
+    MoveFile(arquivo_origem, arquivo_destino)
+
+    ListFiles(pasta_temp)
+
+    RenameFile(arquivo_destino, arquivo_renomeado)
+
+    ListFiles(pasta_temp)
+
+    CheckSpace(pasta_temp)
+}
